@@ -150,76 +150,78 @@ const DevSnippets: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4 px-2">
             DevSnippet Vault
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
             Your ultimate collection of beautiful, responsive code snippets. Browse, create, and manage reusable components with AI assistance.
           </p>
         </div>
 
         {/* Controls */}
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-xl border border-white/20 dark:border-gray-700/50 mb-8">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-xl border border-white/20 dark:border-gray-700/50 mb-6 sm:mb-8">
           {/* Primary Controls */}
-          <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between mb-6">
-            <div className="flex flex-col sm:flex-row gap-4 flex-1 w-full lg:w-auto">
+          <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
+            {/* Search and Category Row */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               {/* Search */}
-              <div className="relative flex-1 min-w-0 sm:min-w-64">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
                 <input
                   type="text"
                   placeholder="Search snippets, tags, or code..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               {/* Category Filter */}
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white min-w-0 sm:min-w-48"
-              >
-                {categories.map(category => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
+              <div className="sm:w-48">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                >
+                  {categories.map(category => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            {/* Action Buttons */}
+            <div className="flex flex-col xs:flex-row gap-2 sm:gap-3">
               <button
                 onClick={() => setShowAIGenerator(true)}
-                className="flex items-center space-x-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="flex items-center justify-center space-x-2 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg sm:rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Wand2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="hidden sm:inline">AI Generate</span>
-                <span className="sm:hidden">AI</span>
+                <Wand2 className="w-4 h-4" />
+                <span>AI Generate</span>
               </button>
               
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
-                className="flex items-center space-x-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="flex items-center justify-center space-x-2 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white rounded-lg sm:rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="hidden sm:inline">Add Snippet</span>
-                <span className="sm:hidden">Add</span>
+                <Plus className="w-4 h-4" />
+                <span>Add Snippet</span>
               </button>
             </div>
           </div>
 
           {/* Secondary Controls */}
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center justify-between">
+            <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="px-3 py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
                 {difficulties.map(difficulty => (
                   <option key={difficulty} value={difficulty}>
@@ -231,7 +233,7 @@ const DevSnippets: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="px-3 py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
                 <option value="title">Sort by Title</option>
                 <option value="category">Sort by Category</option>
@@ -239,7 +241,7 @@ const DevSnippets: React.FC = () => {
               </select>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 sm:space-x-2 self-end sm:self-auto">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-2 rounded-lg transition-all ${
@@ -265,31 +267,31 @@ const DevSnippets: React.FC = () => {
 
           {/* Add Snippet Form */}
           {showAddForm && (
-            <div className="mt-6 p-4 sm:p-6 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="mt-4 sm:mt-6 p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-700/50 rounded-lg sm:rounded-xl border border-gray-200 dark:border-gray-600">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 Add Custom Snippet
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                     Title *
                   </label>
                   <input
                     type="text"
                     value={newSnippet.title}
                     onChange={(e) => setNewSnippet(prev => ({ ...prev, title: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                     placeholder="Snippet title"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                     Language
                   </label>
                   <select
                     value={newSnippet.language}
                     onChange={(e) => setNewSnippet(prev => ({ ...prev, language: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                   >
                     <option value="javascript">JavaScript</option>
                     <option value="typescript">TypeScript</option>
@@ -302,27 +304,27 @@ const DevSnippets: React.FC = () => {
                   </select>
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                     Category
                   </label>
                   <input
                     type="text"
                     value={newSnippet.category}
                     onChange={(e) => setNewSnippet(prev => ({ ...prev, category: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                     placeholder="e.g., Components, Utilities"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                     Difficulty
                   </label>
                   <select
                     value={newSnippet.difficulty}
                     onChange={(e) => setNewSnippet(prev => ({ ...prev, difficulty: e.target.value as any }))}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                   >
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
@@ -330,40 +332,40 @@ const DevSnippets: React.FC = () => {
                   </select>
                 </div>
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <div className="mb-3 sm:mb-4">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                   Description
                 </label>
                 <input
                   type="text"
                   value={newSnippet.description}
                   onChange={(e) => setNewSnippet(prev => ({ ...prev, description: e.target.value }))}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                   placeholder="Brief description of the snippet"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <div className="mb-3 sm:mb-4">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                   Code *
                 </label>
                 <textarea
                   value={newSnippet.code}
                   onChange={(e) => setNewSnippet(prev => ({ ...prev, code: e.target.value }))}
-                  rows={8}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-mono text-sm"
+                  rows={6}
+                  className="w-full px-3 sm:px-4 py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-mono"
                   placeholder="Paste your code here..."
                 />
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col xs:flex-row gap-2 sm:gap-3">
                 <button
                   onClick={addCustomSnippet}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200"
+                  className="px-4 sm:px-6 py-2 text-sm sm:text-base bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200"
                 >
                   Add Snippet
                 </button>
                 <button
                   onClick={() => setShowAddForm(false)}
-                  className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-200"
+                  className="px-4 sm:px-6 py-2 text-sm sm:text-base bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-200"
                 >
                   Cancel
                 </button>
@@ -373,8 +375,8 @@ const DevSnippets: React.FC = () => {
         </div>
 
         {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+        <div className="mb-4 sm:mb-6 px-2">
+          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm lg:text-base">
             Showing {filteredSnippets.length} snippet{filteredSnippets.length !== 1 ? 's' : ''}
             {selectedCategory !== 'All' && ` in ${selectedCategory}`}
             {selectedDifficulty !== 'All' && ` • ${selectedDifficulty} level`}
@@ -383,60 +385,60 @@ const DevSnippets: React.FC = () => {
 
         {/* Snippets Display */}
         {viewMode === 'grid' ? (
-          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
             {filteredSnippets.map((snippet) => (
               <div
                 key={snippet.id}
-                className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/20 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-1"
+                className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-xl border border-white/20 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-1"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between mb-3 sm:mb-4">
+                  <div className="flex-1 min-w-0 pr-2">
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 truncate">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 truncate">
                         {snippet.title}
                       </h3>
                       {snippet.isCustom && (
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 flex-shrink-0">
-                          <Star className="w-3 h-3 mr-1" />
+                        <span className="inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 flex-shrink-0">
+                          <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" />
                           Custom
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
+                    <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">
                       {snippet.description}
                     </p>
-                    <div className="flex items-center gap-2 mb-4 flex-wrap">
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getLanguageColor(snippet.language)}`}>
-                        <Code2 className="w-3 h-3 mr-1" />
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 flex-wrap">
+                      <span className={`inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${getLanguageColor(snippet.language)}`}>
+                        <Code2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" />
                         {snippet.language}
                       </span>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
-                        <Tag className="w-3 h-3 mr-1" />
+                      <span className="inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                        <Tag className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" />
                         {snippet.category}
                       </span>
                       {snippet.difficulty && (
-                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(snippet.difficulty)}`}>
+                        <span className={`inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${getDifficultyColor(snippet.difficulty)}`}>
                           {snippet.difficulty}
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2 flex-shrink-0 ml-4">
+                  <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
                     <button
                       onClick={() => toggleFavorite(snippet.id)}
-                      className={`p-2 rounded-lg transition-all duration-200 ${
+                      className={`p-1.5 sm:p-2 rounded-lg transition-all duration-200 ${
                         favorites.includes(snippet.id)
                           ? 'text-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'text-gray-400 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700'
                       }`}
                       aria-label="Toggle favorite"
                     >
-                      <Heart className={`w-4 h-4 ${favorites.includes(snippet.id) ? 'fill-current' : ''}`} />
+                      <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${favorites.includes(snippet.id) ? 'fill-current' : ''}`} />
                     </button>
                     {snippet.isCustom && (
                       <button
                         onClick={() => deleteCustomSnippet(snippet.id)}
-                        className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200"
+                        className="p-1.5 sm:p-2 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200 text-lg sm:text-xl"
                         aria-label="Delete snippet"
                       >
                         ×
@@ -446,33 +448,33 @@ const DevSnippets: React.FC = () => {
                 </div>
 
                 <div className="relative">
-                  <pre className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 text-sm overflow-x-auto border border-gray-200 dark:border-gray-700 max-h-64">
+                  <pre className="bg-gray-50 dark:bg-gray-900/50 rounded-lg sm:rounded-xl p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto border border-gray-200 dark:border-gray-700 max-h-48 sm:max-h-64">
                     <code className="text-gray-800 dark:text-gray-200 whitespace-pre">
                       {snippet.code.length > 300 ? `${snippet.code.substring(0, 300)}...` : snippet.code}
                     </code>
                   </pre>
                   <button
                     onClick={() => handleCopySnippet(snippet.code, snippet.title)}
-                    className="absolute top-3 right-3 p-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
+                    className="absolute top-2 sm:top-3 right-2 sm:right-3 p-1.5 sm:p-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
                     aria-label="Copy code"
                   >
-                    <Copy className="w-4 h-4" />
+                    <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </button>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {filteredSnippets.map((snippet) => (
               <div
                 key={snippet.id}
-                className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 group"
+                className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-white/20 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-4 sm:gap-6">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                         {snippet.title}
                       </h3>
                       {snippet.isCustom && (
@@ -482,32 +484,32 @@ const DevSnippets: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-3 sm:mb-4">
                       {snippet.description}
                     </p>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getLanguageColor(snippet.language)}`}>
-                        <Code2 className="w-4 h-4 mr-1" />
+                      <span className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${getLanguageColor(snippet.language)}`}>
+                        <Code2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                         {snippet.language}
                       </span>
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
-                        <Tag className="w-4 h-4 mr-1" />
+                      <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                        <Tag className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                         {snippet.category}
                       </span>
                       {snippet.difficulty && (
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getDifficultyColor(snippet.difficulty)}`}>
+                        <span className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${getDifficultyColor(snippet.difficulty)}`}>
                           {snippet.difficulty}
                         </span>
                       )}
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-3 flex-shrink-0">
+                  <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 self-start lg:self-auto">
                     <button
                       onClick={() => handleCopySnippet(snippet.code, snippet.title)}
-                      className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                      className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
                     >
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       <span>Copy</span>
                     </button>
                     <button
@@ -519,12 +521,12 @@ const DevSnippets: React.FC = () => {
                       }`}
                       aria-label="Toggle favorite"
                     >
-                      <Heart className={`w-5 h-5 ${favorites.includes(snippet.id) ? 'fill-current' : ''}`} />
+                      <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${favorites.includes(snippet.id) ? 'fill-current' : ''}`} />
                     </button>
                     {snippet.isCustom && (
                       <button
                         onClick={() => deleteCustomSnippet(snippet.id)}
-                        className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200"
+                        className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200 text-lg sm:text-xl"
                         aria-label="Delete snippet"
                       >
                         ×
@@ -538,29 +540,29 @@ const DevSnippets: React.FC = () => {
         )}
 
         {filteredSnippets.length === 0 && (
-          <div className="text-center py-16">
+          <div className="text-center py-12 sm:py-16 px-4">
             <div className="max-w-md mx-auto">
-              <Code2 className="w-20 h-20 text-gray-400 mx-auto mb-6" />
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <Code2 className="w-16 h-16 sm:w-20 sm:h-20 text-gray-400 mx-auto mb-4 sm:mb-6" />
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 No snippets found
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
+              <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base mb-6 sm:mb-8">
                 Try adjusting your search terms, category, or difficulty filter. Or create a new snippet to get started!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <button
                   onClick={() => {
                     setSearchTerm('');
                     setSelectedCategory('All');
                     setSelectedDifficulty('All');
                   }}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
                 >
                   Clear Filters
                 </button>
                 <button
                   onClick={() => setShowAIGenerator(true)}
-                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
                 >
                   Generate with AI
                 </button>
