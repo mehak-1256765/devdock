@@ -16,7 +16,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/readme-generator" element={<ReadmeGenerator />} />
-              <Route path="/dev-snippets" element={<DevSnippets />} />
+              <Route path="/dev-snippets" element={<DevSnippets />} 
+              />
             </Routes>
           </Layout>
           <Toaster
