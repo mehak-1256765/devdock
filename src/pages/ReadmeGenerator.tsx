@@ -1291,7 +1291,8 @@ const ReadmeGenerator: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-6 md:gap-8">
+
         {/* Form Section */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700">
@@ -1339,85 +1340,94 @@ const ReadmeGenerator: React.FC = () => {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Be detailed - AI uses this to infer tech stack and generate content</p>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Technology Stack
-                </label>
-                <div className="flex gap-2 mb-3">
-                  <input
-                    type="text"
-                    value={techStackInput}
-                    onChange={(e) => setTechStackInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && addTechStack()}
-                    className="flex-1 px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder="React, TypeScript, Node.js, etc."
-                  />
-                  <button
-                    type="button"
-                    onClick={addTechStack}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
-                  >
-                    Add
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {readmeData.techStack.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-700"
-                    >
-                      {tech}
-                      <button
-                        onClick={() => removeTechStack(tech)}
-                        className="ml-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 font-bold"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">AI will auto-detect technologies from your description if left empty</p>
-              </div>
+             <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+  {/* Technology Stack */}
+  <div>
+    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+      Technology Stack
+    </label>
+    <div className="flex flex-col sm:flex-row gap-2 mb-3">
+      <input
+        type="text"
+        value={techStackInput}
+        onChange={(e) => setTechStackInput(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && addTechStack()}
+        className="flex-1 px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        placeholder="React, TypeScript, Node.js, etc."
+      />
+      <button
+        type="button"
+        onClick={addTechStack}
+        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+      >
+        Add
+      </button>
+    </div>
+    <div className="flex flex-wrap gap-2">
+      {readmeData.techStack.map((tech, index) => (
+        <span
+          key={index}
+          className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-700"
+        >
+          {tech}
+          <button
+            onClick={() => removeTechStack(tech)}
+            className="ml-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 font-bold"
+          >
+            ×
+          </button>
+        </span>
+      ))}
+    </div>
+    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+      AI will auto-detect technologies from your description if left empty
+    </p>
+  </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Key Features
-                </label>
-                <div className="flex gap-2 mb-3">
-                  <input
-                    type="text"
-                    value={featureInput}
-                    onChange={(e) => setFeatureInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && addFeature()}
-                    className="flex-1 px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder="Real-time updates, User authentication, etc."
-                  />
-                  <button
-                    type="button"
-                    onClick={addFeature}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
-                  >
-                    Add
-                  </button>
-                </div>
-                <div className="space-y-2 max-h-40 overflow-y-auto">
-                  {readmeData.features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-green-50 dark:from-gray-700 dark:to-green-900/20 rounded-lg border border-green-200 dark:border-green-700"
-                    >
-                      <span className="text-gray-900 dark:text-white">{feature}</span>
-                      <button
-                        onClick={() => removeFeature(feature)}
-                        className="text-red-500 hover:text-red-700 dark:hover:text-red-400 font-bold"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">AI will generate smart features based on your tech stack if left empty</p>
-              </div>
+  {/* Key Features */}
+  <div>
+    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+      Key Features
+    </label>
+    <div className="flex flex-col sm:flex-row gap-2 mb-3">
+      <input
+        type="text"
+        value={featureInput}
+        onChange={(e) => setFeatureInput(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && addFeature()}
+        className="flex-1 px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        placeholder="Real-time updates, User authentication, etc."
+      />
+      <button
+        type="button"
+        onClick={addFeature}
+        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+      >
+        Add
+      </button>
+    </div>
+    <div className="space-y-2 max-h-40 overflow-y-auto">
+      {readmeData.features.map((feature, index) => (
+        <div
+          key={index}
+          className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-green-50 dark:from-gray-700 dark:to-green-900/20 rounded-lg border border-green-200 dark:border-green-700"
+        >
+          <span className="text-gray-900 dark:text-white">{feature}</span>
+          <button
+            onClick={() => removeFeature(feature)}
+            className="text-red-500 hover:text-red-700 dark:hover:text-red-400 font-bold"
+          >
+            ×
+          </button>
+        </div>
+      ))}
+    </div>
+    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+      AI will generate smart features based on your tech stack if left empty
+    </p>
+  </div>
+</div>
+
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -1531,18 +1541,19 @@ const ReadmeGenerator: React.FC = () => {
 {/* Preview Section */}
 <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 h-full flex flex-col">
-    <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-700 dark:to-blue-900/20 rounded-t-xl">
-      <div className="flex items-center space-x-1">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0 p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-700 dark:to-blue-900/20 rounded-t-xl">
+      {/* Header Title & Toggle Buttons */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 w-full sm:w-auto">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-0">
           Live Preview
         </h3>
-        <div className="flex items-center space-x-3 ml-4">
+        <div className="flex items-center space-x-2">
           <button
             onClick={() => setShowPreview(true)}
-            className={`px-3 py-2 rounded-lg text-sm space-x-2 font-medium transition-all duration-200 bg-opacity-80 ${
+            className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               showPreview
                 ? 'bg-blue-600 text-white shadow-md'
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 bg-white dark:bg-gray-800'
+                : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
             }`}
           >
             <Eye className="w-4 h-4 inline mr-1" />
@@ -1550,10 +1561,10 @@ const ReadmeGenerator: React.FC = () => {
           </button>
           <button
             onClick={() => setShowPreview(false)}
-            className={`px-3 py-2 rounded-lg text-sm font-medium space-x-2 transition-all duration-200 bg-opacity-80 ${
+            className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               !showPreview
                 ? 'bg-blue-600 text-white shadow-md'
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 bg-white dark:bg-gray-800'
+                : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
             }`}
           >
             <Code className="w-4 h-4 inline mr-1" />
@@ -1562,18 +1573,18 @@ const ReadmeGenerator: React.FC = () => {
         </div>
       </div>
 
-      {/* Added margin-left to separate this group from the left */}
-      <div className="flex items-center space-x-3 ml-4">
+      {/* Buttons: Copy & Download */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
         <button
           onClick={handleCopy}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 w-full sm:w-auto"
         >
           <Copy className="w-4 h-4" />
           <span>Copy</span>
         </button>
         <button
           onClick={handleDownload}
-          className="flex items-center space-x-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+          className="flex items-center space-x-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 w-full sm:w-auto"
         >
           <Download className="w-4 h-4" />
           <span>Download</span>
@@ -1581,7 +1592,6 @@ const ReadmeGenerator: React.FC = () => {
       </div>
     </div>
 
-            
             <div className="flex-1 overflow-auto p-6">
               {showPreview ? (
                 <div 

@@ -104,7 +104,7 @@ const DevSnippets: React.FC = () => {
     });
     setShowAddForm(false);
     
-    toast.success('Snippet added successfully!', {
+    toast.success('Snippet added successfully,Check out the DevSnippets Section', {
       icon: '✨',
       style: {
         borderRadius: '10px',
@@ -162,66 +162,64 @@ const DevSnippets: React.FC = () => {
         </div>
 
         {/* Controls */}
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-xl border border-white/20 dark:border-gray-700/50 mb-6 sm:mb-8">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-xl border border-white/20 dark:border-gray-700/50 mb-8">
           {/* Primary Controls */}
-          <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
-            {/* Search and Category Row */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row gap-4 flex-1 w-full lg:w-auto">
               {/* Search */}
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="relative flex-1 min-w-0 sm:min-w-64">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
                   placeholder="Search snippets, tags, or code..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               {/* Category Filter */}
-              <div className="sm:w-48">
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                >
-                  {categories.map(category => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white min-w-0 sm:min-w-48"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col xs:flex-row gap-2 sm:gap-3">
+            <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setShowAIGenerator(true)}
-                className="flex items-center justify-center space-x-2 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg sm:rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="flex items-center space-x-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Wand2 className="w-4 h-4" />
-                <span>AI Generate</span>
+                <Wand2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">AI Generate</span>
+                <span className="sm:hidden">AI</span>
               </button>
               
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
-                className="flex items-center justify-center space-x-2 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white rounded-lg sm:rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="flex items-center space-x-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Plus className="w-4 h-4" />
-                <span>Add Snippet</span>
+                <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">Add Snippet</span>
+                <span className="sm:hidden">Add</span>
               </button>
             </div>
           </div>
 
           {/* Secondary Controls */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="flex flex-wrap gap-3">
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="px-3 py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
                 {difficulties.map(difficulty => (
                   <option key={difficulty} value={difficulty}>
@@ -233,7 +231,7 @@ const DevSnippets: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="px-3 py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
                 <option value="title">Sort by Title</option>
                 <option value="category">Sort by Category</option>
@@ -241,7 +239,7 @@ const DevSnippets: React.FC = () => {
               </select>
             </div>
 
-            <div className="flex items-center space-x-1 sm:space-x-2 self-end sm:self-auto">
+            <div className="flex items-center space-x-2">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-2 rounded-lg transition-all ${
