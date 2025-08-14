@@ -12,6 +12,7 @@ export interface ReadmeData {
 }
 
 export interface Snippet {
+  difficulty: any;
   id: string;
   title: string;
   description: string;
@@ -20,6 +21,8 @@ export interface Snippet {
   language: string;
   isFavorite?: boolean;
   isCustom?: boolean;
+   createdAt?: string;
+   tags?: string[];
 }
 
 export interface TemplateConfig {
