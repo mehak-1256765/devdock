@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import BuyMeCoffee from './BuyMeCoffee';
+// import BuyMeCoffee from './BuyMeCoffee';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,12 +8,12 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <div className="min-h-screen transition-colors duration-200 bg-gray-50 dark:bg-gray-900">
       <Header />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="container px-4 py-8 mx-auto sm:px-6 lg:px-8">
         {children}
       </main>
-      <BuyMeCoffee />
+      {/* <BuyMeCoffee /> */}
     </div>
   );
 };
